@@ -98,15 +98,16 @@ allMons.forEach((b: any, a: any) => {
   }
 });
 
-export default function Breeding() {
+export default function Breeding(isClient: any) {
   const [selectedMales, setSelectedMales] = useState(
-    JSON.parse(localStorage.getItem("selectedMales") || "") || []
+    JSON.parse((isClient && localStorage.getItem("selectedMales")) || "") || []
   );
   const [selectedFemales, setSelectedFemales] = useState(
-    JSON.parse(localStorage.getItem("selectedFemales") || "") || []
+    JSON.parse((isClient && localStorage.getItem("selectedFemales")) || "") ||
+      []
   );
   const [selectedOffspring, setSelectedOffspring] = useState(
-    localStorage.getItem("selectedOffspring") || ""
+    (isClient && localStorage.getItem("selectedOffspring")) || ""
   );
   const [path, setPath] = useState<any[]>([]);
 

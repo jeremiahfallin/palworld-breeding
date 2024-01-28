@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <Breeding />
+      <Breeding isClient={isClient} />
     </div>
   );
 }
