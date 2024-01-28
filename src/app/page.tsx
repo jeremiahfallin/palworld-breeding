@@ -1,8 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Key, ReactNode } from "react";
 import data from "../data";
 
 class Monster {
+  name: any;
+  parents: any[];
+  possibleOffspring: any[];
   constructor(name: any) {
     this.name = name;
     this.parents = [];
@@ -77,7 +80,7 @@ for (let r of rows) {
 
 let mons = [] as any;
 let pairs = [] as any;
-allMons.forEach((b, a) => {
+allMons.forEach((b: any, a: any) => {
   if (a === 0) {
     for (let i = 1; i < b.length; i++) {
       let monster = new Monster(b[i]);
@@ -97,15 +100,15 @@ allMons.forEach((b, a) => {
 
 export default function Home() {
   const [selectedMales, setSelectedMales] = useState(
-    JSON.parse(localStorage.getItem("selectedMales")) || []
+    JSON.parse(localStorage.getItem("selectedMales") || "") || []
   );
   const [selectedFemales, setSelectedFemales] = useState(
-    JSON.parse(localStorage.getItem("selectedFemales")) || []
+    JSON.parse(localStorage.getItem("selectedFemales") || "") || []
   );
   const [selectedOffspring, setSelectedOffspring] = useState(
     localStorage.getItem("selectedOffspring") || ""
   );
-  const [path, setPath] = useState(null);
+  const [path, setPath] = useState<any[]>([]);
 
   useEffect(() => {
     localStorage.setItem("selectedMales", JSON.stringify(selectedMales));
@@ -113,7 +116,7 @@ export default function Home() {
     localStorage.setItem("selectedOffspring", selectedOffspring);
   }, [selectedMales, selectedFemales, selectedOffspring]);
 
-  const handleOffspringChange = (event) => {
+  const handleOffspringChange = (event: any) => {
     setSelectedOffspring(event.target.value);
   };
 
@@ -125,10 +128,11 @@ export default function Home() {
       pairs,
       2
     );
-    setPath(result);
+
+    setPath(result as any[]);
   };
 
-  const handleMaleCheckboxChange = (event) => {
+  const handleMaleCheckboxChange = (event: any) => {
     const selectedMale = event.target.value;
     const isChecked = event.target.checked;
 
@@ -137,11 +141,13 @@ export default function Home() {
       setSelectedMales([...selectedMales, selectedMale]);
     } else {
       // Remove the unselected male from the state
-      setSelectedMales(selectedMales.filter((male) => male !== selectedMale));
+      setSelectedMales(
+        selectedMales.filter((male: any) => male !== selectedMale)
+      );
     }
   };
 
-  const handleFemaleCheckboxChange = (event) => {
+  const handleFemaleCheckboxChange = (event: any) => {
     const selectedFemale = event.target.value;
     const isChecked = event.target.checked;
 
@@ -151,7 +157,7 @@ export default function Home() {
     } else {
       // Remove the unselected female from the state
       setSelectedFemales(
-        selectedFemales.filter((female) => female !== selectedFemale)
+        selectedFemales.filter((female: any) => female !== selectedFemale)
       );
     }
   };
@@ -205,8 +211,8 @@ export default function Home() {
           <select value={selectedOffspring} onChange={handleOffspringChange}>
             <option value="">--Select an Offspring--</option>
             {offspringOptions.sort().map((offspring) => (
-              <option key={offspring} value={offspring}>
-                {offspring}
+              <option key={offspring as Key} value={offspring as string}>
+                {offspring as ReactNode}
               </option>
             ))}
           </select>
