@@ -120,6 +120,15 @@ export default function Breeding(isClient: any) {
     if (isClient) {
       return;
     }
+    if (localStorage.getItem("selectedMales") === null) {
+      localStorage.setItem("selectedMales", JSON.stringify([]));
+    }
+    if (localStorage.getItem("selectedFemales") === null) {
+      localStorage.setItem("selectedFemales", JSON.stringify([]));
+    }
+    if (localStorage.getItem("selectedOffspring") === null) {
+      localStorage.setItem("selectedOffspring", "");
+    }
     setSelectedMales(JSON.parse(localStorage.getItem("selectedMales") || ""));
     setSelectedFemales(
       JSON.parse(localStorage.getItem("selectedFemales") || "")
