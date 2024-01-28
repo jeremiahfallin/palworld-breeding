@@ -100,14 +100,13 @@ allMons.forEach((b: any, a: any) => {
 
 export default function Breeding(isClient: any) {
   const [selectedMales, setSelectedMales] = useState(
-    JSON.parse((isClient && localStorage.getItem("selectedMales")) || "") || []
+    JSON.parse(localStorage.getItem("selectedMales") || "") || []
   );
   const [selectedFemales, setSelectedFemales] = useState(
-    JSON.parse((isClient && localStorage.getItem("selectedFemales")) || "") ||
-      []
+    JSON.parse(localStorage.getItem("selectedFemales") || "") || []
   );
   const [selectedOffspring, setSelectedOffspring] = useState(
-    (isClient && localStorage.getItem("selectedOffspring")) || ""
+    localStorage.getItem("selectedOffspring") || ""
   );
   const [path, setPath] = useState<any[]>([]);
 
@@ -116,6 +115,17 @@ export default function Breeding(isClient: any) {
     localStorage.setItem("selectedFemales", JSON.stringify(selectedFemales));
     localStorage.setItem("selectedOffspring", selectedOffspring);
   }, [selectedMales, selectedFemales, selectedOffspring]);
+
+  useEffect(() => {
+    if (isClient) {
+      return;
+    }
+    setSelectedMales(JSON.parse(localStorage.getItem("selectedMales") || ""));
+    setSelectedFemales(
+      JSON.parse(localStorage.getItem("selectedFemales") || "")
+    );
+    setSelectedOffspring(localStorage.getItem("selectedOffspring") || "");
+  }, [isClient]);
 
   const handleOffspringChange = (event: any) => {
     setSelectedOffspring(event.target.value);
