@@ -184,36 +184,40 @@ export default function Breeding(isClient: any) {
 
       <div>
         <h2>Males</h2>
-        {Object.keys(mons)
-          .sort()
-          .map((m) => (
-            <label key={m}>
-              <input
-                type="checkbox"
-                value={m}
-                onChange={handleMaleCheckboxChange}
-                checked={selectedMales.includes(m)}
-              />
-              {m}
-            </label>
-          ))}
+        <div className="checkbox-group">
+          {Object.keys(mons)
+            .sort()
+            .map((m) => (
+              <label key={m}>
+                <input
+                  type="checkbox"
+                  value={m}
+                  onChange={handleMaleCheckboxChange}
+                  checked={selectedMales.includes(m)}
+                />
+                {m}
+              </label>
+            ))}
+        </div>
       </div>
 
       <div>
         <h2>Females</h2>
-        {Object.keys(mons)
-          .sort()
-          .map((m) => (
-            <label key={m}>
-              <input
-                type="checkbox"
-                value={m}
-                onChange={handleFemaleCheckboxChange}
-                checked={selectedFemales.includes(m)}
-              />
-              {m}
-            </label>
-          ))}
+        <div className="checkbox-group">
+          {Object.keys(mons)
+            .sort()
+            .map((m) => (
+              <label key={m}>
+                <input
+                  type="checkbox"
+                  value={m}
+                  onChange={handleFemaleCheckboxChange}
+                  checked={selectedFemales.includes(m)}
+                />
+                {m}
+              </label>
+            ))}
+        </div>
       </div>
 
       <div>
