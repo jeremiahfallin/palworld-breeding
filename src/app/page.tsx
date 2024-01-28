@@ -9,6 +9,15 @@ export default function Home() {
   if (!isClient) {
     return null;
   }
+  if (localStorage.getItem("selectedMales") === null) {
+    localStorage.setItem("selectedMales", JSON.stringify([]));
+  }
+  if (localStorage.getItem("selectedFemales") === null) {
+    localStorage.setItem("selectedFemales", JSON.stringify([]));
+  }
+  if (localStorage.getItem("selectedOffspring") === null) {
+    localStorage.setItem("selectedOffspring", "");
+  }
 
   return (
     <div>
