@@ -182,41 +182,39 @@ export default function Breeding(isClient: any) {
     <div className="App">
       <h1>Monster Breeding Paths</h1>
 
-      <div>
-        <h2>Males</h2>
-        <div className="checkbox-group">
-          {Object.keys(mons)
-            .sort()
-            .map((m) => (
-              <label key={m}>
-                <input
-                  type="checkbox"
-                  value={m}
-                  onChange={handleMaleCheckboxChange}
-                  checked={selectedMales.includes(m)}
-                />
-                {m}
-              </label>
-            ))}
-        </div>
-      </div>
-
-      <div>
-        <h2>Females</h2>
-        <div className="checkbox-group">
-          {Object.keys(mons)
-            .sort()
-            .map((m) => (
-              <label key={m}>
-                <input
-                  type="checkbox"
-                  value={m}
-                  onChange={handleFemaleCheckboxChange}
-                  checked={selectedFemales.includes(m)}
-                />
-                {m}
-              </label>
-            ))}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <h2>Owned</h2>
+          <div className="checkbox-group">
+            <h3>Males</h3>
+            <h3>Females</h3>
+            <h3>Males</h3>
+            <h3>Females</h3>
+            {Object.keys(mons)
+              .sort()
+              .map((m) => (
+                <>
+                  <label key={m}>
+                    <input
+                      type="checkbox"
+                      value={m}
+                      onChange={handleMaleCheckboxChange}
+                      checked={selectedMales.includes(m)}
+                    />
+                    {m}
+                  </label>
+                  <label key={m}>
+                    <input
+                      type="checkbox"
+                      value={m}
+                      onChange={handleFemaleCheckboxChange}
+                      checked={selectedFemales.includes(m)}
+                    />
+                    {m}
+                  </label>
+                </>
+              ))}
+          </div>
         </div>
       </div>
 
